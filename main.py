@@ -3,7 +3,7 @@ today_date = date.today()
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
-updater = Updater(token='1770413790:AAEojTD7xcJD-L47dEn03tzl2_HxjefOK84', use_context=True)
+updater = Updater(token='token', use_context=True)
 import logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 

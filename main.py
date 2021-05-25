@@ -17,7 +17,7 @@ def start(update, context):
 # 2
 def error(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text='Error list:\n\n'
-                                                                    'Error 1: Command not created\n\n'
+                                                                    'Error 1: Command not found\n\n'
                                                                     'THIS LIST WILL BE UPDATED')
 
 # 3
@@ -37,20 +37,24 @@ def hello(update, context):
 
 # 5
 def feelings(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text='How are you feeling today?')
+    context.bot.send_message(chat_id=update.effective_chat.id, text='How are you feeling today?') # need ReplyKeyboardMarkup
 
 # 6
 def recent(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text='Last update: 24/5/2021\n'
-                                                                    '-making code simple')
+    context.bot.send_message(chat_id=update.effective_chat.id, text='Last update: 25/5/2021\n'
+                                                                    '-studying telegram to prep huge update')
 
 # 7
-def secret(update, context):
+def secret(update, context): # need ReplyKeyboardMarkup, inline mode to place the spotify link?
     context.bot.send_message(chat_id=update.effective_chat.id, text='WOAH!')
 
 # 8
-def QOTD(update, context):
+def QOTD(update, context): # inline mode? provide link to external website?
     context.bot.send_message(chat_id=update.effective_chat.id, text='quote. CURRENTLY IN DEVELOPMENT THANKS')
+    
+#9 for another future command use
+def newcommand(update,context):
+    context.bot.send_message(chat_id=update.effective_chat.id, text='meow')
 
 
 # to start the commands with handler and dispatcher
@@ -63,6 +67,7 @@ feelings_handler = CommandHandler('feelings', feelings)
 recent_handler = CommandHandler('recent', recent)
 secret_handler = CommandHandler('secret', secret)
 QOTD_handler = CommandHandler('QOTD', QOTD)
+newcommand_handler = CommandHandler('newcommand', newcommand)
 
 dispatcher = updater.dispatcher
 
@@ -74,6 +79,7 @@ dispatcher.add_handler(feelings_handler)
 dispatcher.add_handler(recent_handler)
 dispatcher.add_handler(secret_handler)
 dispatcher.add_handler(QOTD_handler)
+dispatcher.add_handler(newcommand_handler)
 
 # when user sends commands that are not added
 def unknown(update, context):

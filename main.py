@@ -1,7 +1,7 @@
 from datetime import date
 today_date = date.today()
 
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 
 updater = Updater(token='token', use_context=True)
 import logging
@@ -32,8 +32,8 @@ def help(update, context):
                              )
 
 # 4
-def hello(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text=f'Hewo! Today is {today_date}')
+def hello(update: Update, context: CallbackContext) -> None:
+     update.message.reply_text(f'Hewo {update.effective_user.first_name}, today is {today_date}')
 
 # 5
 def feelings(update, context):
@@ -41,8 +41,8 @@ def feelings(update, context):
 
 # 6
 def recent(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text='Last update: 25/5/2021\n'
-                                                                    '-studying telegram to prep huge update')
+    context.bot.send_message(chat_id=update.effective_chat.id, text='Last update: 24/6/2021\n'
+                                                                    '-More personal feel ')
 
 # 7
 def secret(update, context): # need ReplyKeyboardMarkup, inline mode to place the spotify link?

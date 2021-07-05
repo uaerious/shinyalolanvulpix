@@ -29,6 +29,7 @@ def help(update, context):
                                                                     '/QOTD for quote of the day!\n\n'
                                                                     'or you could always ask Wayn for help 😉\n\n'
                                                                     'text him to give ur suggestions! :D'
+                                                                    'go explore the hidden commands hehe'
                              )
 
 # 4
@@ -41,8 +42,10 @@ def feelings(update, context):
 
 # 6
 def recent(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text='Last update: 24/6/2021\n'
-                                                                    '-More personal feel ')
+    context.bot.send_message(chat_id=update.effective_chat.id, text='Last update: 5/7/2021\n'
+                                                                    '-New commands hehe\n\n'
+                                                                    '-hm struggling here...'
+)
 
 # 7
 def secret(update, context): # need ReplyKeyboardMarkup, inline mode to place the spotify link?
@@ -52,7 +55,11 @@ def secret(update, context): # need ReplyKeyboardMarkup, inline mode to place th
 def QOTD(update, context): # inline mode? provide link to external website?
     context.bot.send_message(chat_id=update.effective_chat.id, text='quote. CURRENTLY IN DEVELOPMENT THANKS')
     
-#9 for another future command use
+#9 
+def ily(update,context):
+    context.bot.send_message(chat_id=update.effective_chat.id, text='ily🥺🥰♥')
+
+#10 for another future command use
 def newcommand(update,context):
     context.bot.send_message(chat_id=update.effective_chat.id, text='meow')
 
@@ -67,6 +74,7 @@ feelings_handler = CommandHandler('feelings', feelings)
 recent_handler = CommandHandler('recent', recent)
 secret_handler = CommandHandler('secret', secret)
 QOTD_handler = CommandHandler('QOTD', QOTD)
+ily_handler = CommandHandler('ily', ily)
 newcommand_handler = CommandHandler('newcommand', newcommand)
 
 dispatcher = updater.dispatcher
@@ -79,6 +87,7 @@ dispatcher.add_handler(feelings_handler)
 dispatcher.add_handler(recent_handler)
 dispatcher.add_handler(secret_handler)
 dispatcher.add_handler(QOTD_handler)
+dispatcher.add_handler(ily_handler)
 dispatcher.add_handler(newcommand_handler)
 
 # when user sends commands that are not added

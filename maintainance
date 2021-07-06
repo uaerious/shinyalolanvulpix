@@ -1,4 +1,4 @@
-from telegram.ext import Updater, CommandHandler
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 updater = Updater(token='TOKEN', use_context=True)
 
@@ -17,7 +17,7 @@ def error(update, context):
 
 def help(update, context):
     update.message.reply_text(f'help list is currently not available...\n'
-                              f'/downtime'
+                              f'/downtime')
                               
 def downtime(update, context):
     update.message.reply_text(f'estimated 1 hour update sorryyyy')
@@ -25,7 +25,7 @@ def downtime(update, context):
 start_handler = CommandHandler('start', start)
 error_handler = CommandHandler('error', error)
 help_handler = CommandHandler('help', help)
-downtime_handler = CommandHandler('downtime', 'downtime')
+downtime_handler = CommandHandler('downtime', downtime)
 
 dispatcher = updater.dispatcher
 

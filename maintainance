@@ -6,7 +6,7 @@ def start(update, context):
     # echo off by default
     update.message.reply_text(f'Welcome to this bot\n'
                               f'/help for assistance 😉'
-                              f' A wild Error 2 appeared! /error')
+                              f'A wild Error 2 appeared! /error')
 
 def error(update, context):
     update.message.reply_text(f'This are current errors :o\n\n'

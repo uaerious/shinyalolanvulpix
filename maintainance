@@ -15,17 +15,23 @@ def error(update, context):
                               f'Error 2: Currently under maintenance /downtime'
                               )
 
+def help(update, context):
+    update.message.reply_text(f'help list is currently not available...\n'
+                              f'/downtime'
+                              
 def downtime(update, context):
     update.message.reply_text(f'estimated 1 hour update sorryyyy')
 
 start_handler = CommandHandler('start', start)
 error_handler = CommandHandler('error', error)
+help_handler = CommandHandler('help', help)
 downtime_handler = CommandHandler('downtime', 'downtime')
 
 dispatcher = updater.dispatcher
 
 dispatcher.add_handler(start_handler)
 dispatcher.add_handler(error_handler)
+dispatcher.add_handler(help_handler)
 dispatcher.add_handler(downtime_handler)
 
 def unknown(update, context):

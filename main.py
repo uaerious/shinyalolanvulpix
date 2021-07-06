@@ -56,14 +56,12 @@ def feelings(update, context):
 
 # 6
 def recent(update, context):
-    update.message.reply_text(f'Last update: 5/7/2021\n'
+    update.message.reply_text(f'Last update: 6/7/2021\n'
                               f'-New commands hehe\n\n'
                               f'simpler codes whee\n\n'
-                              f'-hm struggling here...\n\n'
-                              f'echo is currently on by default and CANNOT BE TURNED OFF\n'
-                              f'working hard to have a choice'
+                              f'echo is OFF by DEFAULT and can be turned ON\n'
+                              f'working hard to bring in InlineKeyboard'
                              )
-
 
 # 7
 def secret(update, context):  # need ReplyKeyboardMarkup, inline mode to place the spotify link?

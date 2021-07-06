@@ -1,0 +1,16 @@
+updater = Updater(token='TOKEN', use_context=True)
+def start(update, context):
+    # echo off by default
+    update.message.reply_text(f'Welcome to this bot\n'
+                              f'/help for assistance 😉'
+                              f' A wild Error 2 appeared! /error')
+
+def error(update, context):
+    update.message.reply_text(f'This are current errors :o\n\n'
+                              f'Error list:\n\n'
+                              f'Error 1: Not a valid command\n'
+                              f'Error 2: Currently under maintenance /downtime'
+                              )
+
+def downtime(update, context):
+    update.message.reply_text(f'estimated 1 hour update sorryyyy')

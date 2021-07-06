@@ -5,7 +5,7 @@ updater = Updater(token='TOKEN', use_context=True)
 def start(update, context):
     # echo off by default
     update.message.reply_text(f'Welcome to this bot\n'
-                              f'/help for assistance 😉'
+                              f'/help for assistance 😉\n'
                               f'A wild Error 2 appeared! /error')
 
 def error(update, context):

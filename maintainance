@@ -1,4 +1,7 @@
+from telegram.ext import Updater, CommandHandler
+
 updater = Updater(token='TOKEN', use_context=True)
+
 def start(update, context):
     # echo off by default
     update.message.reply_text(f'Welcome to this bot\n'
@@ -14,3 +17,25 @@ def error(update, context):
 
 def downtime(update, context):
     update.message.reply_text(f'estimated 1 hour update sorryyyy')
+
+start_handler = CommandHandler('start', start)
+error_handler = CommandHandler('error', error)
+downtime_handler = CommandHandler('downtime', 'downtime')
+
+dispatcher = updater.dispatcher
+
+dispatcher.add_handler(start_handler)
+dispatcher.add_handler(error_handler)
+dispatcher.add_handler(downtime_handler)
+
+def unknown(update, context):
+    update.message.reply_text(f"What's this?\n"
+                              f"A wild Error 2 appeared!\n"
+                              f"/error for more details :D")
+
+
+unknown_handler = MessageHandler(Filters.command, unknown)
+dispatcher.add_handler(unknown_handler)
+
+# waiting for commands from user
+updater.start_polling()

@@ -1,3 +1,4 @@
+import random
 from datetime import date
 
 today_date = date.today()
@@ -20,6 +21,7 @@ def start(update, context):
     update.message.reply_text(f'Welcome to this bot\n'
                               f'/help for assistance 😉')
 
+
 # 2
 def error(update, context):
     update.message.reply_text(f'This are current errors :o\n\n'
@@ -37,16 +39,18 @@ def help(update, context):
                               f'/recent for recent update notes\n\n'
                               f'/QOTD for quote of the day!\n\n'
                               f'/echoOFF turns off echo\n\n'
-                              f'/echoON turns on echo - currently OFF by default\n\n'
+                              f'/echoON turns on echo - currently OFF by default\n'
+                              f'go rawr at the bot with echo hehe\n\n'
+                              f'/ily the bot suddenly is your other half :o\n\n'
                               f'or you could always ask Wayn for help 😉\n\n'
                               f'text him to give ur suggestions! :D\n'
                               f'go explore the hidden commands hehe'
-                             )
+                              )
 
 
 # 4
-def hello(update, context)-> None:
-    update.message.reply_text(f'Hewo {update.effective_user.first_name}, today is {today_date}')
+def hello(update, context) -> None:
+    update.message.reply_text(f'Hiii {update.effective_user.first_name}👋, today is {today_date}')
 
 
 # 5
@@ -56,12 +60,16 @@ def feelings(update, context):
 
 # 6
 def recent(update, context):
-    update.message.reply_text(f'Last update: 6/7/2021\n'
-                              f'-New commands hehe\n\n'
-                              f'simpler codes whee\n\n'
-                              f'echo is OFF by DEFAULT and can be turned ON\n'
-                              f'working hard to bring in InlineKeyboard'
-                             )
+    update.message.reply_text(f'Last update: 7/7/2021\n'
+                              f'-New commands hehe\n'
+                              f'-simpler codes whee\n'
+                              f'-echo is OFF by DEFAULT and can be turned ON\n'
+                              f'-working hard to bring in InlineKeyboard\n'
+                              f'making the bot more friendly\n'
+                              f'-eliminating bugs'
+                              f'soon to be in beta'
+                              )
+
 
 # 7
 def secret(update, context):  # need ReplyKeyboardMarkup, inline mode to place the spotify link?
@@ -78,11 +86,12 @@ def ily(update, context):
     update.message.reply_text(f'ily🥺🥰')
 
 
-# 10 for another future command use
-def newcommand(update, context):
-    update.message.reply_text(f'meow')
+# 10 InlineKeyboard set status?
+def status(update, context):
+    update.message.reply_text(f'ight what now')
 
-#11 very lengthy echo setup :rolleye:
+
+# 11 very lengthy echo setup :rolleye:
 
 def put(update, context):
     """Usage: /put value"""
@@ -96,6 +105,7 @@ def put(update, context):
     # Send the key to the user
     update.message.reply_text(key)
 
+
 def get(update, context):
     """Usage: /get uuid"""
     # Seperate ID from command
@@ -105,6 +115,7 @@ def get(update, context):
     is_echo = context.user_data.get(key, 'is_echo')
     update.message.reply_text(is_echo)
 
+
 if __name__ == '__main__':
     updater = Updater('TOKEN', use_context=True)
     dp = updater.dispatcher
@@ -112,50 +123,51 @@ if __name__ == '__main__':
     dp.add_handler(CommandHandler('put', put))
     dp.add_handler(CommandHandler('get', get))
 
+
 def echo(update, context):
     if context.user_data['is_echo']:
-       update.message.reply_text(update.message.text)
+        update.message.reply_text(update.message.text)
     else:
         print('echo off')
 
-def echoON(update, context):
+
+def echoon(update, context):
     context.user_data['is_echo'] = True
     update.message.reply_text(f'echo is on...')
 
-def echoOFF(update, context):
+
+def echooff(update, context):
     context.user_data['is_echo'] = False
     update.message.reply_text(f'turned off now...')
 
 
-# to start the commands with handler and dispatcher
+# 12 inlinekeyboard for the user to pick a choice
+def sps(update, context):
+    possible_actions = ['scissors', 'paper', 'stone']
+    computer_action = random.choice(possible_actions)
+    user_choice = ['scissors', 'paper', 'stone']
+    update.message.reply_text(f'I chose {computer_action}, you chose {user_choice}!')
 
-start_handler = CommandHandler('start', start)
-error_handler = CommandHandler('error', error)
-help_handler = CommandHandler('help', help)
-hello_handler = CommandHandler('hello', hello)
-feelings_handler = CommandHandler('feelings', feelings)
-recent_handler = CommandHandler('recent', recent)
-secret_handler = CommandHandler('secret', secret)
-QOTD_handler = CommandHandler('QOTD', QOTD)
-ily_handler = CommandHandler('ily', ily)
-newcommand_handler = CommandHandler('newcommand', newcommand)
-echo_handler = MessageHandler(Filters.text & (~Filters.command), echo)
+
+# 13 april fools stuff
+
+# to start the commands with handler and dispatcher
 
 dispatcher = updater.dispatcher
 
-dispatcher.add_handler(start_handler)
-dispatcher.add_handler(error_handler)
-dispatcher.add_handler(help_handler)
-dispatcher.add_handler(hello_handler)
-dispatcher.add_handler(feelings_handler)
-dispatcher.add_handler(recent_handler)
-dispatcher.add_handler(secret_handler)
-dispatcher.add_handler(QOTD_handler)
-dispatcher.add_handler(ily_handler)
-dispatcher.add_handler(newcommand_handler)
-dispatcher.add_handler(echo_handler)
-dispatcher.add_handler(CommandHandler('echoOFF', echoOFF))
-dispatcher.add_handler(CommandHandler('echoON', echoON))
+dispatcher.add_handler(CommandHandler('start', start))
+dispatcher.add_handler(CommandHandler('error', error))
+dispatcher.add_handler(CommandHandler('help', help))
+dispatcher.add_handler(CommandHandler('hello', hello))
+dispatcher.add_handler(CommandHandler('feelings', feelings))
+dispatcher.add_handler(CommandHandler('recent', recent))
+dispatcher.add_handler(CommandHandler('secret', secret))
+dispatcher.add_handler(CommandHandler('QOTD', QOTD))
+dispatcher.add_handler(CommandHandler('ily', ily))
+dispatcher.add_handler(CommandHandler('status', status))
+dispatcher.add_handler(MessageHandler(Filters.text & (~Filters.command), echo))
+dispatcher.add_handler(CommandHandler('echooff', echooff))
+dispatcher.add_handler(CommandHandler('echoon', echoon))
 
 
 # when user sends commands that are not added
@@ -165,8 +177,7 @@ def unknown(update, context):
                               f"/error for more details :D")
 
 
-unknown_handler = MessageHandler(Filters.command, unknown)
-dispatcher.add_handler(unknown_handler)
+dispatcher.add_handler(MessageHandler(Filters.command, unknown))
 
 # waiting for commands from user
 updater.start_polling()

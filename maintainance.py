@@ -1,12 +1,19 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
-updater = Updater(token='TOKEN', use_context=True)
+updater = Updater(token='1770413790:AAHzEfkjLUlcq2OH5cAAml_AWV7-t9gir6A', use_context=True)
+
+import logging
+
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+
+# commands
 
 def start(update, context):
     # echo off by default
     update.message.reply_text(f'Welcome to this bot\n'
-                              f'/help for assistance 😉\n'
+                              f'/help for assistance 😉\n\n'
                               f'A wild Error 2 appeared! /error')
+
 
 def error(update, context):
     update.message.reply_text(f'This are current errors :o\n\n'
@@ -15,24 +22,28 @@ def error(update, context):
                               f'Error 2: Currently under maintenance /downtime'
                               )
 
+
 def help(update, context):
     update.message.reply_text(f'help list is currently not available...\n'
                               f'/downtime')
-                              
+
+
+def echo(update, context):
+    update.message.reply_text(text='/downtime')
+
+
 def downtime(update, context):
-    update.message.reply_text(f'estimated 1 hour update sorryyyy')
+    update.message.reply_text(f'estimated 1 hour update sorryyyy :(')
 
-start_handler = CommandHandler('start', start)
-error_handler = CommandHandler('error', error)
-help_handler = CommandHandler('help', help)
-downtime_handler = CommandHandler('downtime', downtime)
-
+# dispatcher
 dispatcher = updater.dispatcher
 
-dispatcher.add_handler(start_handler)
-dispatcher.add_handler(error_handler)
-dispatcher.add_handler(help_handler)
-dispatcher.add_handler(downtime_handler)
+dispatcher.add_handler(CommandHandler('start', start))
+dispatcher.add_handler(CommandHandler('error', error))
+dispatcher.add_handler(CommandHandler('help', help))
+dispatcher.add_handler(CommandHandler('downtime', downtime))
+dispatcher.add_handler(MessageHandler(Filters.text & (~Filters.command), echo))
+# other commands
 
 def unknown(update, context):
     update.message.reply_text(f"What's this?\n"
@@ -41,7 +52,7 @@ def unknown(update, context):
 
 
 unknown_handler = MessageHandler(Filters.command, unknown)
-dispatcher.add_handler(unknown_handler)
+dispatcher.add_handler(MessageHandler(Filters.command, unknown))
 
 # waiting for commands from user
 updater.start_polling()

@@ -33,7 +33,8 @@ def error(update, context):
 
 # 3
 def help(update, context):
-    update.message.reply_text(f'/hello for daily date\n\n'
+    update.message.reply_text(f'/start to ensure bot is up to date\n\n'
+                              f'/hello for a warm greeting 😃\n\n'
                               f'/feelings to send your feelings 🥰\n\n'
                               f'/error to look at known error list\n\n'
                               f'/recent for recent update notes\n\n'

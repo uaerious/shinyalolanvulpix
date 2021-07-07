@@ -7,7 +7,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 from uuid import uuid4
 
-updater = Updater(token='TOKEN', use_context=True)
+updater = Updater(token='1770413790:AAHzEfkjLUlcq2OH5cAAml_AWV7-t9gir6A', use_context=True)
 import logging
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
@@ -38,11 +38,13 @@ def help(update, context):
                               f'/error to look at known error list\n\n'
                               f'/recent for recent update notes\n\n'
                               f'/QOTD for quote of the day!\n\n'
-                              f'/echoOFF turns off echo\n\n'
-                              f'/echoON turns on echo - currently OFF by default\n'
+                              f'/echooff turns off echo\n\n'
+                              f'/echoon turns on echo - currently OFF by default\n'
                               f'go rawr at the bot with echo hehe\n\n'
                               f'/ily the bot suddenly is your other half :o\n\n'
-                              f'or you could always ask Wayn for help 😉\n\n'
+                              f'/downtime shows the downtime/next scheduled update\n\n'
+                              f'/version for people who are just curious on such stuff\n\n'
+                              f'you could always ask Wayn for help 😉\n'
                               f'text him to give ur suggestions! :D\n'
                               f'go explore the hidden commands hehe'
                               )
@@ -60,30 +62,36 @@ def feelings(update, context):
 
 # 6
 def recent(update, context):
-    update.message.reply_text(f'Last update: 7/7/2021\n'
+    update.message.reply_text(f'Last update: 7/7/2021\n\n'
                               f'-New commands hehe\n'
                               f'-simpler codes whee\n'
                               f'-echo is OFF by DEFAULT and can be turned ON\n'
                               f'-working hard to bring in InlineKeyboard\n'
-                              f'making the bot more friendly\n'
-                              f'-eliminating bugs'
-                              f'soon to be in beta'
+                              f'-making the bot more friendly\n'
+                              f'-some features work now...\n'
+                              f'soon to be in beta...'
                               )
 
 
 # 7
-def secret(update, context):  # need ReplyKeyboardMarkup, inline mode to place the spotify link?
-    update.message.reply_text(f'WOAH!')
+def secret(update, context):
+    update.message.reply_text(f'WOAH!\n'
+                              f'https://open.spotify.com/playlist/429y59z0RjyDszbJbGfn7m?si=eb3a48e033504782')
 
 
 # 8
-def QOTD(update, context):  # inline mode? provide link to external website?
-    update.message.reply_text(f'quote. CURRENTLY IN DEVELOPMENT THANKS')
+def QOTD(update, context):
+    update.message.reply_text(f'https://www.brainyquote.com/topics/daily-quotes\n'
+                              f'is the link ok? or should we just have the quote itself?\n'
+                              f'tell wayn hehe i cant collect responses yet D:')
 
 
-# 9
+# 9 
 def ily(update, context):
-    update.message.reply_text(f'ily🥺🥰')
+    update.message.reply_text(f'ily🥺🥰\n'
+                              f'https://www.youtube.com/watch?v=T_VJv_079l8\n\n'
+                              f'https://www.youtube.com/watch?v=Gj8sBYRwvI4\n\n'
+                              f'https://www.youtube.com/watch?v=zb_IOQhHvsE')
 
 
 # 10 InlineKeyboard set status?
@@ -117,7 +125,7 @@ def get(update, context):
 
 
 if __name__ == '__main__':
-    updater = Updater('TOKEN', use_context=True)
+    updater = Updater('1770413790:AAHzEfkjLUlcq2OH5cAAml_AWV7-t9gir6A', use_context=True)
     dp = updater.dispatcher
 
     dp.add_handler(CommandHandler('put', put))
@@ -149,7 +157,24 @@ def sps(update, context):
     update.message.reply_text(f'I chose {computer_action}, you chose {user_choice}!')
 
 
-# 13 april fools stuff
+# 13 downtime
+def downtime(update, context):
+    update.message.reply_text(f'there is no maintenance currently...\n'
+                              f'next scheduled update: NA')
+
+
+# 14 version
+def version(update, context):
+    update.message.reply_text(f'CLOSED TESTING ALPHA\n'
+                              f'Version: Alpha\n\n'
+                              f'check /recent for the latest update')
+
+
+# 15 april fools stuff
+def update_bot(update, context):
+    update.message.reply_text(f'HAH U LEGIT THOUGHT THERE WAS?'
+                              f'APRIL FOOLS')
+
 
 # to start the commands with handler and dispatcher
 
@@ -168,7 +193,9 @@ dispatcher.add_handler(CommandHandler('status', status))
 dispatcher.add_handler(MessageHandler(Filters.text & (~Filters.command), echo))
 dispatcher.add_handler(CommandHandler('echooff', echooff))
 dispatcher.add_handler(CommandHandler('echoon', echoon))
-
+dispatcher.add_handler(CommandHandler('downtime', downtime))
+dispatcher.add_handler(CommandHandler('version', version))
+dispatcher.add_handler(CommandHandler('update_bot',update_bot))
 
 # when user sends commands that are not added
 def unknown(update, context):

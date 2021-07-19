@@ -153,12 +153,12 @@ def version(update, context):
 
 # 13
 def goodmorning(update, context):
-    update.message.reply_text(f'good morning,{update.effective_user.first_name}! 🥺')
+    update.message.reply_text(f'good morning, {update.effective_user.first_name}! 🥺')
 
 
 # 14
 def goodnight(update, context):
-    update.message.reply_text(f'good night,{update.effective_user.first_name}! 🥺\n'
+    update.message.reply_text(f'good night, {update.effective_user.first_name}! 🥺\n'
                               f'time for me to sleep toooo...')
 
 

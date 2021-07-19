@@ -64,9 +64,9 @@ def feelings(update, context):
 # 6
 def recent(update, context):
     update.message.reply_text(f'Last update: 19/7/2021\n\n'
-                              f'-working hard to bring in InlineKeyboard\n'
-                              f'-removed QOTD as I cant find a QOTD website :(\n'
-                              f'good morning! or good night! 😉'
+                              f'- working hard to bring in InlineKeyboard\n'
+                              f'- removed QOTD as I cant find a QOTD website :(\n'
+                              f'- good morning! or good night! 😉'
                               )
 
 

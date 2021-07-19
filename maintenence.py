@@ -4,7 +4,7 @@ import logging
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
-updater = Updater(token='1770413790:AAHzEfkjLUlcq2OH5cAAml_AWV7-t9gir6A', use_context=True)
+updater = Updater(token='TOKEN', use_context=True)
 
 # commands
 

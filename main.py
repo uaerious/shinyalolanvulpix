@@ -1,3 +1,4 @@
+import time
 from datetime import date
 
 today_date = date.today()
@@ -16,9 +17,11 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 # 1 send in different messages?
 def start(update, context):
-    # echo off by default; sends alot of internal error
-    update.message.reply_text(f'Welcome to this bot\n'
-                              f'/help for assistance 😉')
+
+    # echo off by default;
+    update.message.reply_text(f'Welcome to this bot')
+    time.sleep(0.1)
+    update.message.reply_text(f'/help for assistance 😉')
 
 
 # 2
@@ -58,30 +61,39 @@ def hello(update, context) -> None:
 
 # 5
 def feelings(update, context):
-    update.message.reply_text(f'How are you feeling today?')  # need inlinekeyboardMarkup
-
+    update.message.reply_text(f'How are you feeling today?') # need inlinekeyboardMarkup
+    time.sleep(1)
+    update.message.reply_text(f'this will not be updated anytime soon sorryy...')
 
 # 6
 def recent(update, context):
     update.message.reply_text(f'Last update: 11/10/2021\n\n'
-                              f'the end...\n\n'
-                              f'unworked features would not be worked on D:\n'
-                              f'will be still in use :)'
+                              f'split messages :D\n'
+                              f'im smart :D\n\n'
+                              f'unworked features most likely not worked on D:\n'
+                              f'would still be in use :)'
                               )
 
 
 # 7
 def secret(update, context):
-    update.message.reply_text(f'WOAH!\n'
-                              f'https://open.spotify.com/playlist/429y59z0RjyDszbJbGfn7m?si=eb3a48e033504782\n\n'
-                              f'https://open.spotify.com/track/50BmNitVXwo8yi2VieV1ME?si=6b694677609d433d\n\n'
-                              f'https://open.spotify.com/track/54nRf8BUmZNITMxpKIM8Dj?si=ad48d36c4ed64251')
 
-# 8 can choose
+    update.message.reply_text('WOAH!!')
+    time.sleep(1)
+    update.message.reply_text('https://open.spotify.com/playlist/429y59z0RjyDszbJbGfn7m?si=eb3a48e033504782')
+    time.sleep(0.2)
+    update.message.reply_text('https://open.spotify.com/track/50BmNitVXwo8yi2VieV1ME?si=6b694677609d433d')
+    time.sleep(0.2)
+    update.message.reply_text('https://open.spotify.com/track/54nRf8BUmZNITMxpKIM8Dj?si=ad48d36c4ed64251')
+
+# 8 can choose??
 def ily(update, context):
-    update.message.reply_text(f'ily🥺🥰\n'
-                              f'https://www.youtube.com/watch?v=Gj8sBYRwvI4\n\n'
-                              f'https://www.youtube.com/watch?v=zb_IOQhHvsE')
+
+    update.message.reply_text('ily🥺🥰')
+    time.sleep(0.5)
+    update.message.reply_text('https://www.youtube.com/watch?v=Gj8sBYRwvI4')
+    time.sleep(0.1)
+    update.message.reply_text('https://www.youtube.com/watch?v=zb_IOQhHvsE')
 
 
 # 9 very lengthy echo setup :rolleye:
@@ -121,7 +133,7 @@ def echo(update, context):
     if context.user_data['is_echo']:
         update.message.reply_text(update.message.text)
     else:
-        print('echo off')
+        print('e_oF')
 
 
 def echoon(update, context):
@@ -142,7 +154,7 @@ def downtime(update, context):
 # 11
 def version(update, context):
     update.message.reply_text(f'OPEN TESTING ALPHA\n'
-                              f'Ver:A1.2 \n\n'
+                              f'Ver:A1.3 \n\n'
                               f'check /recent for the latest update')
 
 
@@ -153,14 +165,26 @@ def goodmorning(update, context):
 
 # 13 try to automate?
 def goodnight(update, context):
-    update.message.reply_text(f'good night, {update.effective_user.first_name}! 🥺\n'
-                              f'time for me to sleep toooo...')
+
+    update.message.reply_text(f'good night, {update.effective_user.first_name}! 🥺')
+    time.sleep(0.2)
+    update.message.reply_text(f'time for me to sleep toooo...')
 
 
 # 14 april fools stuff
 def update_bot(update, context):
     update.message.reply_text(f'HAH U LEGIT THOUGHT THERE WAS?\n'
                               f'APRIL FOOLS!')
+
+
+# 15 using string to split message... needs improvement but good start :D
+def stringsplitt(update, context):
+
+    msg0 = 'very long message to test'
+
+    update.message.reply_text(msg0[0:9])
+    time.sleep(0.2)
+    update.message.reply_text(msg0[9:25])
 
 
 # to start the commands with handler and dispatcher
@@ -183,6 +207,7 @@ dp.add_handler(CommandHandler('version', version))
 dp.add_handler(CommandHandler('goodmorning', goodmorning))
 dp.add_handler(CommandHandler('goodnight', goodnight))
 dp.add_handler(CommandHandler('update_bot', update_bot))
+dp.add_handler(CommandHandler('stringsplitt', stringsplitt))
 
 
 # when user sends commands that are not added
@@ -196,3 +221,4 @@ dp.add_handler(MessageHandler(Filters.command, unknown))
 
 # waiting for commands from user
 updater.start_polling()
+

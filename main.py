@@ -1,7 +1,11 @@
 import time
 from datetime import date
 
-today_date = date.today()
+today = date.today()
+tm_hour_a = 6
+tm_hour_b = 22
+wake_up = tm_hour_a
+sleep_time = tm_hour_b
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -17,10 +21,9 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 # 1 send in different messages?
 def start(update, context):
-
     # echo off by default;
     update.message.reply_text(f'Welcome to this bot')
-    time.sleep(0.1)
+    time.sleep(0.2)
     update.message.reply_text(f'/help for assistance 😉')
 
 
@@ -48,28 +51,26 @@ def help(update, context):
                               f'/ily the bot suddenly is your other half :o\n\n'
                               f'/downtime shows the downtime/next scheduled update\n\n'
                               f'/version for people who are just curious on such stuff\n\n'
-                              f'you could always ask Wayn for help 😉\n'
-                              f'text him to give ur suggestions! :D\n'
                               f'go explore the hidden commands hehe'
                               )
 
 
 # 4
 def hello(update, context) -> None:
-    update.message.reply_text(f'Hiii {update.effective_user.first_name}👋, today is {today_date}')
+    update.message.reply_text(f'Hiii {update.effective_user.first_name}👋, today is {today}')
 
 
 # 5
 def feelings(update, context):
-    update.message.reply_text(f'How are you feeling today?') # need inlinekeyboardMarkup
+    update.message.reply_text(f'How are you feeling today?')  # need inlinekeyboardMarkup
     time.sleep(1)
     update.message.reply_text(f'this will not be updated anytime soon sorryy...')
 
+
 # 6
 def recent(update, context):
-    update.message.reply_text(f'Last update: 11/10/2021\n\n'
+    update.message.reply_text(f'Last update: 1/6/2022\n\n'
                               f'split messages :D\n'
-                              f'im smart :D\n\n'
                               f'unworked features most likely not worked on D:\n'
                               f'would still be in use :)'
                               )
@@ -77,7 +78,6 @@ def recent(update, context):
 
 # 7
 def secret(update, context):
-
     update.message.reply_text('WOAH!!')
     time.sleep(1)
     update.message.reply_text('https://open.spotify.com/playlist/429y59z0RjyDszbJbGfn7m?si=eb3a48e033504782')
@@ -86,13 +86,13 @@ def secret(update, context):
     time.sleep(0.2)
     update.message.reply_text('https://open.spotify.com/track/54nRf8BUmZNITMxpKIM8Dj?si=ad48d36c4ed64251')
 
+
 # 8 can choose??
 def ily(update, context):
-
     update.message.reply_text('ily🥺🥰')
     time.sleep(0.5)
     update.message.reply_text('https://www.youtube.com/watch?v=Gj8sBYRwvI4')
-    time.sleep(0.1)
+    time.sleep(0.2)
     update.message.reply_text('https://www.youtube.com/watch?v=zb_IOQhHvsE')
 
 
@@ -133,7 +133,7 @@ def echo(update, context):
     if context.user_data['is_echo']:
         update.message.reply_text(update.message.text)
     else:
-        print('e_oF')
+        print('e_off')
 
 
 def echoon(update, context):
@@ -145,6 +145,7 @@ def echooff(update, context):
     context.user_data['is_echo'] = False
     update.message.reply_text(f'turned off now...')
 
+
 # 10
 def downtime(update, context):
     update.message.reply_text(f'there is no maintenance currently...\n'
@@ -153,33 +154,37 @@ def downtime(update, context):
 
 # 11
 def version(update, context):
-    update.message.reply_text(f'OPEN TESTING ALPHA\n'
-                              f'Ver:A1.3 \n\n'
+    update.message.reply_text(f'Ver:A1.5 \n\n'
                               f'check /recent for the latest update')
 
 
 # 12 try to automate?
 def goodmorning(update, context):
-    update.message.reply_text(f'good morning, {update.effective_user.first_name}! 🥺')
+    if wake_up:
+        update.message.reply_text(f'good morning, {update.effective_user.first_name}! 🥺')
+        time.sleep(0.4)
+        update.message.reply_text(f'Today is: {today}')
+        time.sleep(0.4)
+        update.message.reply_text(f"Hope you'll have a great day ahead! :D")
 
 
 # 13 try to automate?
 def goodnight(update, context):
-
-    update.message.reply_text(f'good night, {update.effective_user.first_name}! 🥺')
-    time.sleep(0.2)
-    update.message.reply_text(f'time for me to sleep toooo...')
+    if sleep_time:
+        update.message.reply_text(f'goodnight, {update.effective_user.first_name}! 🥺')
+        time.sleep(0.2)
+        update.message.reply_text(f'time for me to sleep toooo... 😉')
 
 
 # 14 april fools stuff
 def update_bot(update, context):
-    update.message.reply_text(f'HAH U LEGIT THOUGHT THERE WAS?\n'
-                              f'APRIL FOOLS!')
+    update.message.reply_text(f'HAH U LEGIT THOUGHT THERE WAS?')
+    time.sleep(0.3)
+    update.message.reply_text(f'APRIL FOOLS!')
 
 
 # 15 using string to split message... needs improvement but good start :D
 def stringsplitt(update, context):
-
     msg0 = 'very long message to test'
 
     update.message.reply_text(msg0[0:9])
@@ -212,9 +217,11 @@ dp.add_handler(CommandHandler('stringsplitt', stringsplitt))
 
 # when user sends commands that are not added
 def unknown(update, context):
-    update.message.reply_text(f"What's this?\n"
-                              f"A wild Error 1 appeared!\n"
-                              f"/error for more details :D")
+    update.message.reply_text(f"What's this?")
+    time.sleep(0.2)
+    update.message.reply_text(f"A wild Error 1 appeared!")
+    time.sleep(0.3)
+    update.message.reply_text(f"/error for more details :D")
 
 
 dp.add_handler(MessageHandler(Filters.command, unknown))

@@ -9,4 +9,4 @@ Commands are available as a list on telegram :)
 
 YOU MUST INIATE THE CONVO USING /command , command being the thing you want
 
-Created in 2021
+Created in 2021, no longer updating this. This was a side project before I took computing.
